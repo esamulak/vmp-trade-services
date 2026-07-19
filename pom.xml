@@ -19,7 +19,6 @@
 		<module>application</module>
 		<module>domain</module>
 		<module>infrastructure</module>
-		<module>launcher</module>
 	</modules>
 
 	<properties>
