@@ -6,25 +6,31 @@ FROM maven:3.9.11-eclipse-temurin-21 AS builder
 
 WORKDIR /build
 
+# Copy Maven descriptors first (cache dependencies)
 COPY pom.xml .
-COPY api/pom.xml api/
 COPY application/pom.xml application/
 COPY domain/pom.xml domain/
 COPY infrastructure/pom.xml infrastructure/
 
+# Download dependencies
 RUN --mount=type=cache,target=/root/.m2 \
-    mvn clean install -pl api -am
+    mvn -B dependency:go-offline -DskipTests
 
-COPY api/src api/src
+# Copy source code
 COPY application/src application/src
 COPY domain/src domain/src
 COPY infrastructure/src infrastructure/src
 
+# Copy API contract needed by OpenAPI generator
+COPY api api
+
+# Build
 RUN --mount=type=cache,target=/root/.m2 \
     mvn -B clean package \
-    -pl api \
+    -pl application \
     -am \
     -DskipTests
+
 
 # ============================================================
 # Stage 2: Runtime image
@@ -40,7 +46,7 @@ RUN addgroup -S developer && \
 USER developer
 
 COPY --from=builder \
-    /build/api/target/*.jar \
+    /build/application/target/*.jar \
     app.jar
 
 EXPOSE 8080
