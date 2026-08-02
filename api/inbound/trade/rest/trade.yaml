@@ -14,7 +14,7 @@ servers:
         default: '8080'
 
 tags:
-  - name: Item Listings
+  - name: ItemListing
     description: Operations related to item listings
 
 paths:
@@ -22,7 +22,7 @@ paths:
     post:
       operationId: createItemListing
       tags:
-        - Item Listings
+        - ItemListing
       summary: Create item listing
       requestBody:
         required: true
