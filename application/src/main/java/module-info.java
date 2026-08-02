@@ -1,6 +1,5 @@
 module vmp.trade.services.application {
     requires spring.web;
-
     requires spring.boot.autoconfigure;
     requires spring.boot;
 
