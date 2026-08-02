@@ -66,6 +66,7 @@
                                 <useSpringBoot3>true</useSpringBoot3>
                                 <interfaceOnly>true</interfaceOnly>
                                 <openApiNullable>false</openApiNullable>
+                                <useTags>true</useTags>
                             </configOptions>
                         </configuration>
                     </execution>
