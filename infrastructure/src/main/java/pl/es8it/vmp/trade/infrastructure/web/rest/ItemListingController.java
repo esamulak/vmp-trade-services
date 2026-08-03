@@ -11,6 +11,6 @@ public class ItemListingController implements ItemListingApi {
 
     @Override
     public ResponseEntity<CreateItemListingResponse> createItemListing(CreateItemListingRequest createItemListingRequest) {
-        return ItemListingApi.super.createItemListing(createItemListingRequest);
+        return ResponseEntity.ok(new CreateItemListingResponse());
     }
 }

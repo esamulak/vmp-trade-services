@@ -9,4 +9,8 @@ module vmp.trade.services.infrastructure {
     requires jakarta.servlet;
     requires com.fasterxml.jackson.annotation;
     requires io.swagger.v3.oas.annotations;
+
+    uses pl.es8it.vmp.trade.application.service.ItemListingService;
+
+    exports pl.es8it.vmp.trade.infrastructure.web.rest;
 }

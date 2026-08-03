@@ -8,29 +8,31 @@ WORKDIR /build
 
 # Copy Maven descriptors first (cache dependencies)
 COPY pom.xml .
-COPY application/pom.xml application/
+
 COPY domain/pom.xml domain/
+COPY application/pom.xml application/
 COPY infrastructure/pom.xml infrastructure/
+COPY launcher/pom.xml launcher/
 
 # Download dependencies
 RUN --mount=type=cache,target=/root/.m2 \
     mvn -B dependency:go-offline -DskipTests
 
 # Copy source code
-COPY application/src application/src
 COPY domain/src domain/src
+COPY application/src application/src
 COPY infrastructure/src infrastructure/src
+COPY launcher/src launcher/src
 
 # Copy API contract needed by OpenAPI generator
 COPY api api
 
-# Build
+# Build executable module
 RUN --mount=type=cache,target=/root/.m2 \
     mvn -B clean package \
-    -pl application \
+    -pl launcher \
     -am \
     -DskipTests
-
 
 # ============================================================
 # Stage 2: Runtime image
@@ -46,7 +48,7 @@ RUN addgroup -S developer && \
 USER developer
 
 COPY --from=builder \
-    /build/application/target/*.jar \
+    /build/launcher/target/*.jar \
     app.jar
 
 EXPOSE 8080
