@@ -46,6 +46,8 @@ COPY --from=builder /build/launcher/target/lib /app/lib
 
 EXPOSE 8080
 
-ENTRYPOINT ["java", "--module-path", "/app:/app/lib", "-m", \
+ENTRYPOINT ["java", "--module-path", "/app:/app/lib", \
+            "--add-exports=java.base/jdk.internal.reflect=spring.core", \
+            "-m", \
             "vmp.trade.services.launcher/pl.es8it.vmp.trade.launcher.VmpTradeServicesApplication" \
 ]
