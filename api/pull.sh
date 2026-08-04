@@ -4,20 +4,16 @@ set -e
 cd "$(dirname "$0")"
 
 REPO="https://github.com/esamulak/vmp-contract.git"
-BRANCH=$(git ls-remote --heads "$REPO" "feature/INC-*" | sed 's#.*refs/heads/##' | sort -V | tail -1)
-
-read -p "Use $BRANCH? [Y/n]: " OK
-[[ "$OK" =~ ^[Nn]$ ]] && read -p "Branch: " BRANCH
+REF="${1:-develop}"
 
 rm -rf .contract-tmp inbound/trade
 
-git clone --filter=blob:none --sparse --branch "$BRANCH" "$REPO" .contract-tmp >/dev/null 2>&1
-
-cd .contract-tmp && git sparse-checkout set trade && cd ..
+git clone --depth 1 --branch "$REF" "$REPO" .contract-tmp >/dev/null 2>&1
 
 mkdir -p inbound
-mv .contract-tmp/trade inbound/
+cp -r .contract-tmp/trade inbound/
+cp .contract-tmp/VERSION .
 
 rm -rf .contract-tmp
 
-echo "Contract updated from $BRANCH"
+echo "Contract updated: $REF ($(cat VERSION))"

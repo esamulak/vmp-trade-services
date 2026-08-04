@@ -1,4 +1,4 @@
-package pl.es8it.vmp.trade.application.service.data;
+package pl.es8it.vmp.trade.application.listing.data;
 
 import java.util.List;
 

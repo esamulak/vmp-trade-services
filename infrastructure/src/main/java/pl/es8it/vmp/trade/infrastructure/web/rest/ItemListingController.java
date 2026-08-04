@@ -5,8 +5,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 import pl.es8it.vmp.trade.api.ItemListingApi;
-import pl.es8it.vmp.trade.application.service.ItemListingService;
-import pl.es8it.vmp.trade.application.service.data.CreateItemListingInput;
+import pl.es8it.vmp.trade.application.listing.data.CreateItemListingInput;
+import pl.es8it.vmp.trade.application.listing.service.ItemListingService;
 import pl.es8it.vmp.trade.infrastructure.web.rest.mapper.ItemListingMapper;
 import pl.es8it.vmp.trade.model.CreateItemListingResponse;
 
