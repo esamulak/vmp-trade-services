@@ -1,19 +1,17 @@
 module vmp.trade.services.launcher {
 
+    // Spring Boot
     requires spring.boot;
     requires spring.boot.autoconfigure;
-    requires spring.context;
+    requires spring.boot.tomcat;
 
+    // Runtime dependencies
     requires org.apache.commons.logging;
     requires org.yaml.snakeyaml;
-    requires spring.boot.tomcat;
-    requires org.apache.tomcat.embed.core;
-    requires org.apache.tomcat.embed.el;
-    requires org.apache.tomcat.embed.websocket;
     requires org.jspecify;
-    requires com.fasterxml.jackson.databind;
-    requires com.fasterxml.jackson.core;
+    requires org.apache.tomcat.embed.core;
 
+    // Application modules
     requires vmp.trade.services.infrastructure;
 
     exports pl.es8it.vmp.trade.launcher;
