@@ -24,12 +24,6 @@ paths:
       tags:
         - Item Listing
       summary: Create item listing
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CreateItemListingRequest'
       responses:
         '201':
           description: Item listing created successfully
@@ -37,26 +31,24 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CreateItemListingResponse'
-        '400':
-          description: Invalid request
-        '500':
-          description: Internal server error
 
 components:
   schemas:
     CreateItemListingRequest:
       type: object
       required:
-        - name
+        - items
       properties:
-        name:
-          type: string
-          example: "Item listing name"
+        items:
+          type: array
+          items:
+            type: string
     CreateItemListingResponse:
       type: object
       required:
-        - name
+        - items
       properties:
-        name:
-          type: string
-          example: "Item listing name"
+        items:
+          type: array
+          items:
+            type: string
