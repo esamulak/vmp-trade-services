@@ -6,6 +6,10 @@ FROM maven:3.9.11-eclipse-temurin-21 AS builder
 
 WORKDIR /build
 
+RUN apt-get update && \
+    apt-get install -y git && \
+    rm -rf /var/lib/apt/lists/*
+
 COPY . .
 
 RUN --mount=type=cache,target=/root/.m2 \

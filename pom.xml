@@ -15,6 +15,7 @@
 	<name>vmp-trade-services</name>
 
     <modules>
+		<module>api</module>
 		<module>application</module>
 		<module>domain</module>
 		<module>infrastructure</module>

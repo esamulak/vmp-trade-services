@@ -17,6 +17,12 @@
     <dependencies>
         <dependency>
             <groupId>pl.es8it.vmp.trade</groupId>
+            <artifactId>vmp-trade-api</artifactId>
+            <version>${project.version}</version>
+            <type>pom</type>
+        </dependency>
+        <dependency>
+            <groupId>pl.es8it.vmp.trade</groupId>
             <artifactId>domain</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
