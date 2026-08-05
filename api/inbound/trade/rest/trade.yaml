@@ -1,0 +1,54 @@
+openapi: 3.0.3
+
+info:
+  title: Trade API
+  description: API for managing trade
+  version: 1.0.0
+
+servers:
+  - url: http://{hostname}:{port}/api/
+    variables:
+      hostname:
+        default: localhost
+      port:
+        default: '8080'
+
+tags:
+  - name: Item Listing
+    description: Operations related to item listings
+
+paths:
+  /item-listings:
+    post:
+      operationId: createItemListing
+      tags:
+        - Item Listing
+      summary: Create item listing
+      responses:
+        '201':
+          description: Item listing created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateItemListingResponse'
+
+components:
+  schemas:
+    CreateItemListingRequest:
+      type: object
+      required:
+        - items
+      properties:
+        items:
+          type: array
+          items:
+            type: string
+    CreateItemListingResponse:
+      type: object
+      required:
+        - items
+      properties:
+        items:
+          type: array
+          items:
+            type: string
