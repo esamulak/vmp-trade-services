@@ -3,12 +3,12 @@
 set -e
 cd "$(dirname "$0")"
 
-REPO="https://github.com/esamulak/vmp-contract.git"
+VMP_CONTRACT_REPO="https://github.com/esamulak/vmp-contract.git" # TODO: export to env variable
 REF="${1:-master}"
 
 rm -rf .contract-tmp
 
-git clone --depth 1 --branch "$REF" "$REPO" .contract-tmp >/dev/null 2>&1
+git clone --depth 1 --branch "$REF" "$VMP_CONTRACT_REPO" .contract-tmp >/dev/null 2>&1
 
 for dir in inbound outbound; do
     for domain in "$dir"/*; do

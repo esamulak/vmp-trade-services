@@ -13,8 +13,7 @@ RUN apt-get update && \
 COPY . .
 
 RUN --mount=type=cache,target=/root/.m2 \
-    mvn -B clean package -pl infrastructure -am -DskipTests
-
+    mvn -B clean package -pl infrastructure -am
 
 # ============================================================
 # Stage 2: Runtime
