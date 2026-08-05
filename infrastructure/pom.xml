@@ -11,10 +11,6 @@
 
     <artifactId>infrastructure</artifactId>
 
-    <properties>
-        <mapstruct.version>1.6.3</mapstruct.version>
-    </properties>
-
     <dependencies>
         <!-- Spring Boot -->
         <dependency>
