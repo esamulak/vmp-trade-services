@@ -10,7 +10,7 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>vmp-trade-api</artifactId>
+    <artifactId>api</artifactId>
     <packaging>pom</packaging>
 
     <build>
@@ -28,7 +28,7 @@
                         <configuration>
                             <executable>sh</executable>
                             <arguments>
-                                <argument>${maven.multiModuleProjectDirectory}/api/pull.sh</argument>
+                                <argument>${project.basedir}/pull.sh</argument>
                                 <argument>develop</argument> //TODO: change to master
                             </arguments>
                         </configuration>
@@ -37,6 +37,5 @@
             </plugin>
         </plugins>
     </build>
-
 
 </project>

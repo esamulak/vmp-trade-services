@@ -13,7 +13,7 @@ RUN apt-get update && \
 COPY . .
 
 RUN --mount=type=cache,target=/root/.m2 \
-    mvn -B clean package -pl infrastructure -am
+    mvn -B -f project/pom.xml clean package -pl infrastructure -am
 
 # ============================================================
 # Stage 2: Runtime
@@ -28,7 +28,7 @@ RUN addgroup -S vmp && \
 
 USER vmp
 
-COPY --from=builder /build/infrastructure/target/*.jar app.jar
+COPY --from=builder /build/project/infrastructure/target/*.jar app.jar
 
 EXPOSE 8080
 
