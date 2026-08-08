@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: postgres
+  labels:
+    app: postgres
+spec:
+  restartPolicy: Never
+  containers:
+    - name: postgres
+      image: postgres:17
+      envFrom:
+        - configMapRef:
+            name: vmp-trade-config
+        - secretRef:
+            name: vmp-trade-credentials
+      resources:
+        requests:
+          memory: 64Mi
+          cpu: 10m
+        limits:
+          memory: 256Mi
+          cpu: 100m
+      ports:
+        - containerPort: 5432
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+spec:
+  type: NodePort
+  selector:
+    app: postgres
+  ports:
+    - port: 5432
+      targetPort: 5432
+      nodePort: 30432
