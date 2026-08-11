@@ -9,9 +9,10 @@ spec:
   containers:
     - name: postgres
       image: postgres:17
+      env:
+        - name: POSTGRES_DB
+          value: vmp
       envFrom:
-        - configMapRef:
-            name: vmp-trade-config
         - secretRef:
             name: vmp-trade-credentials
       resources:

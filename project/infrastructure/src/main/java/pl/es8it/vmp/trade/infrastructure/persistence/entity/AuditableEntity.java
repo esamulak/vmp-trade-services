@@ -2,7 +2,6 @@ package pl.es8it.vmp.trade.infrastructure.persistence.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
-import jakarta.persistence.PrePersist;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
