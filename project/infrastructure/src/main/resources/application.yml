@@ -12,4 +12,8 @@ spring:
     locations: classpath:db/migration
     default-schema: trade
     table: schema_version
+  jpa:
+    properties:
+      hibernate:
+        default_schema: trade
 
