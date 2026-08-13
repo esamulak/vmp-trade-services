@@ -1,0 +1,5 @@
+image:
+  tag: local
+
+service:
+  type: LoadBalancer # Service type is set to LoadBalancer in order to expose the application on localhost.
