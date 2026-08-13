@@ -6,3 +6,4 @@ data:
   POSTGRES_HOST: {{ .Values.postgres.host | quote }}
   POSTGRES_PORT: {{ .Values.postgres.port | quote }}
   POSTGRES_DB: {{ .Values.postgres.database | quote }}
+  DB_SCHEMA: {{ .Values.postgres.schema | quote }}

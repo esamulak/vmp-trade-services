@@ -24,3 +24,4 @@ postgres:
   host: postgres
   port: 5432
   database: vmp
+  schema: trade

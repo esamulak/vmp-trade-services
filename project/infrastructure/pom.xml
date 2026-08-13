@@ -94,7 +94,7 @@
                         <configuration>
                             <inputSpec>${project.parent.basedir}/api/inbound/${domain}/rest/trade.yaml</inputSpec>
                             <generatorName>spring</generatorName>
-                            <output>target/generated-sources/openapi</output>
+                            <output>${project.build.directory}/generated-sources/openapi</output>
                             <apiPackage>${project.groupId}.api</apiPackage>
                             <modelPackage>${project.groupId}.model</modelPackage>
                             <configOptions>
