@@ -14,7 +14,7 @@ spec:
           value: vmp
       envFrom:
         - secretRef:
-            name: vmp-trade-credentials
+            name: vmp-trade-services-secret
       resources:
         requests:
           memory: 64Mi

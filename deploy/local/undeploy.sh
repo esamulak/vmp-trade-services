@@ -3,12 +3,12 @@
 set -eu
 
 echo "Removing application..."
-helm uninstall vmp-trade-services
+helm uninstall vmp-trade-services || true
 
 echo "Removing PostgreSQL..."
 kubectl delete -f postgres.yaml --ignore-not-found
 
-echo "Removing credentials..."
-kubectl delete secret vmp-trade-credentials --ignore-not-found
+echo "Removing Secret..."
+kubectl delete -f secret.yaml --ignore-not-found
 
-echo "Undeploy completed."
+echo "Undeployment completed."

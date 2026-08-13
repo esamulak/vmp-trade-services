@@ -2,9 +2,8 @@
 
 set -eu
 
-kubectl create secret generic vmp-trade-credentials \
-  --from-env-file=credentials.env \
-  --dry-run=client -o yaml | kubectl apply -f -
+echo "Creating Secret..."
+kubectl apply -f secret.yaml
 
 echo "Starting PostgreSQL..."
 kubectl apply -f postgres.yaml
