@@ -34,4 +34,4 @@ build/
 
 ### Custom ###
 api/.contract-tmp/
-deploy/local/credentials.env
+deploy/local/manifests/secret.yaml

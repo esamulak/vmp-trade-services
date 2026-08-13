@@ -1,0 +1,2 @@
+service:
+  type: LoadBalancer # Change the service type to LoadBalancer in order to expose the application on localhost.

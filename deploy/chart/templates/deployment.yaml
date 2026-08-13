@@ -1,33 +1,27 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: vmp-trade-services
+  name: {{ .Values.appName }}
 spec:
   replicas: {{ .Values.replicaCount }}
-
   selector:
     matchLabels:
-      app: vmp-trade-services
-
+      app: {{ .Values.appName }}
   template:
     metadata:
       labels:
-        app: vmp-trade-services
-
+        app: {{ .Values.appName }}
     spec:
       containers:
-        - name: vmp-trade-services
+        - name: {{ .Values.appName }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-
           ports:
             - containerPort: 8080
-
           envFrom:
             - configMapRef:
-                name: vmp-trade-config
+                name: {{ .Values.appName }}-config
             - secretRef:
-                name: vmp-trade-credentials
-
+                name: {{ .Values.appName }}-secret
           resources:
             {{- toYaml .Values.resources | nindent 12 }}

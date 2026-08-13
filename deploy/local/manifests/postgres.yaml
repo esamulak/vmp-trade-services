@@ -12,9 +12,11 @@ spec:
       env:
         - name: POSTGRES_DB
           value: vmp
+        - name: TZ
+          value: Europe/Warsaw
       envFrom:
         - secretRef:
-            name: vmp-trade-credentials
+            name: vmp-trade-services-secret
       resources:
         requests:
           memory: 64Mi
