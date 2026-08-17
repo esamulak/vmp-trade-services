@@ -23,12 +23,14 @@ FROM eclipse-temurin:21-jre-alpine
 
 WORKDIR /app
 
-RUN addgroup -S vmp && \
-    adduser -S vmp -G vmp -u 1001
-
-USER vmp
+RUN addgroup -S vmp -g 1000 && \
+    adduser -S vmp -G vmp -u 1000
 
 COPY --from=builder /build/project/infrastructure/target/*.jar app.jar
+
+RUN chown 1000:1000 app.jar
+
+USER 1000:1000
 
 EXPOSE 8080
 

@@ -12,10 +12,27 @@ spec:
       labels:
         app: {{ .Values.appName }}
     spec:
+      automountServiceAccountToken: {{ .Values.securityContext.automountServiceAccountToken }}
+      volumes:
+        - name: tmp
+          emptyDir: {}
+      securityContext:
+        runAsNonRoot: {{ .Values.securityContext.runAsNonRoot }}
+        runAsUser: {{ .Values.securityContext.runAsUser }}
+        runAsGroup: {{ .Values.securityContext.runAsGroup }}
+        seccompProfile:
+          type: {{ .Values.securityContext.seccompProfile }}
       containers:
         - name: {{ .Values.appName }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          securityContext:
+            privileged: {{ .Values.securityContext.privileged }}
+            allowPrivilegeEscalation: {{ .Values.securityContext.allowPrivilegeEscalation }}
+            readOnlyRootFilesystem: {{ .Values.securityContext.readOnlyRootFilesystem }}
+            capabilities:
+              drop:
+                {{- toYaml .Values.securityContext.capabilities.drop | nindent 16 }}
           ports:
             - containerPort: 8080
           envFrom:
@@ -25,3 +42,6 @@ spec:
                 name: {{ .Values.appName }}-secret
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:
+            - name: tmp
+              mountPath: /tmp
