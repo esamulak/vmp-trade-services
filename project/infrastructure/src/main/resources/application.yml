@@ -18,3 +18,9 @@ spring:
     properties:
       hibernate:
         default_schema: ${DB_SCHEMA}
+
+  management:
+    endpoint:
+      health:
+        probes:
+          enabled: true

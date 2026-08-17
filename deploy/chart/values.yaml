@@ -20,6 +20,24 @@ resources:
     cpu: 500m
     memory: 512Mi
 
+probes:
+  liveness:
+    httpGet:
+      path: /api/actuator/health/liveness
+      port: 8080
+    initialDelaySeconds: 60
+    periodSeconds: 10
+    timeoutSeconds: 3
+    failureThreshold: 3
+
+  readiness:
+    httpGet:
+      path: /api/actuator/health/readiness
+      port: 8080
+    periodSeconds: 10
+    timeoutSeconds: 3
+    failureThreshold: 3
+
 postgres:
   host: postgres
   port: 5432

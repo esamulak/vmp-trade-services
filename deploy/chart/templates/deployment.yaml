@@ -35,6 +35,10 @@ spec:
                 {{- toYaml .Values.securityContext.capabilities.drop | nindent 16 }}
           ports:
             - containerPort: 8080
+          livenessProbe:
+            {{- toYaml .Values.probes.liveness | nindent 12 }}
+          readinessProbe:
+            {{- toYaml .Values.probes.readiness | nindent 12 }}
           envFrom:
             - configMapRef:
                 name: {{ .Values.appName }}-config
